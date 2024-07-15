@@ -61,12 +61,12 @@ if "medra_ruler" not in nlp_combined.pipe_names:
 # Start an MLflow run with experiment management
 if __name__ == "__main__":
     # Create a new mlflow experiment
-    experiment_name = "spacy_stanza_combined_model_experiment_2"
+    experiment_name = "spacy_stanza_combined_model_experiment_3"
     try:
         experiment_id = mlflow.create_experiment(
             name=experiment_name,
             artifact_location="./mlruns",
-            tags={"env": "dev", "version": "1.0.0"},
+            tags={"env": "dev", "version": "1.1.0"},
         )
     except mlflow.exceptions.MlflowException:
         experiment_id = mlflow.get_experiment_by_name(experiment_name).experiment_id
@@ -76,16 +76,16 @@ if __name__ == "__main__":
 
         # Log parameters, metrics, and model
         mlflow.log_param("iterations", 10)
-        mlflow.spacy.log_model(spacy_model=nlp_combined, artifact_path="spacy_combined_model_experiment_2")
+        mlflow.spacy.log_model(spacy_model=nlp_combined, artifact_path="spacy_combined_model_experiment_3")
 
         print(f"Run ID: {run_id}")
 
     # Register the Model
-    model_name = "spacy_combined_ner_model_stanza_test_experiment_model_2"
+    model_name = "spacy_combined_ner_model_stanza_test_experiment_model_3"
 
     try:
         result = mlflow.register_model(
-            model_uri=f"runs:/{run_id}/spacy_combined_model_experiment_2",
+            model_uri=f"runs:/{run_id}/spacy_combined_model_experiment_3",
             name=model_name,
         )
         print(f"Model registered as {result.name} with version {result.version}")
