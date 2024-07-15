@@ -7,8 +7,8 @@ from spacy.pipeline import EntityRuler
 import mlflow
 
 
-# import dagshub
-# dagshub.init(repo_owner='Samcool1990', repo_name='mlflow_spacy_proj', mlflow=True)
+import dagshub
+dagshub.init(repo_owner='Samcool1990', repo_name='mlflow_spacy_proj', mlflow=True, root='./Artifacts')
 
 # Download and load models
 stanza.download("en")  # Download Stanza model for English
@@ -66,7 +66,7 @@ if __name__ == "__main__":
         experiment_id = mlflow.create_experiment(
             name=experiment_name,
             artifact_location="./mlruns",
-            tags={"env": "dev", "version": "1.1.0"},
+            tags={"env": "dev", "version": "1.2.0"},
         )
     except mlflow.exceptions.MlflowException:
         experiment_id = mlflow.get_experiment_by_name(experiment_name).experiment_id
