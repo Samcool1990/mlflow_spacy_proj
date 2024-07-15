@@ -1,0 +1,1 @@
+[{"run_id": "5937462e07c244efa7c3272f94d2d997", "artifact_path": "spacy_combined_model_experiment_3", "utc_time_created": "2024-07-15 10:05:34.423773", "flavors": {"spacy": {"spacy_version": "3.7.5", "data": "model.spacy", "code": null}}, "model_uuid": "7d5db90064294acf843903c61e1c038e", "mlflow_version": "2.14.3", "model_size_bytes": 42452546}]

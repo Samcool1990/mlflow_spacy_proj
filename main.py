@@ -66,7 +66,7 @@ if __name__ == "__main__":
         experiment_id = mlflow.create_experiment(
             name=experiment_name,
             artifact_location="./mlruns",
-            tags={"env": "dev", "version": "1.2.0"},
+            tags={"env": "dev", "version": "1.3.0"},
         )
     except mlflow.exceptions.MlflowException:
         experiment_id = mlflow.get_experiment_by_name(experiment_name).experiment_id

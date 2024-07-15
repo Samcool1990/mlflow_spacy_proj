@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1721038052546
+current_stage: None
+description: null
+last_updated_timestamp: 1721038052546
+name: spacy_combined_ner_model_stanza_test_experiment_model_4
+run_id: 84f9174d06ec4656bdf8d5f00a591ef4
+run_link: null
+source: file:///D:/PIhealth/NLP/SPACY/Optimization_loading/mlflow_spacy_proj/mlruns/84f9174d06ec4656bdf8d5f00a591ef4/artifacts/spacy_combined_model_experiment_4
+status: READY
+status_message: null
+storage_location: file:///D:/PIhealth/NLP/SPACY/Optimization_loading/mlflow_spacy_proj/mlruns/84f9174d06ec4656bdf8d5f00a591ef4/artifacts/spacy_combined_model_experiment_4
+user_id: null
+version: 2

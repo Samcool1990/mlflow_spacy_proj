@@ -1,0 +1,11 @@
+artifact_path: spacy_combined_model_experiment_3
+flavors:
+  spacy:
+    code: null
+    data: model.spacy
+    spacy_version: 3.7.5
+mlflow_version: 2.14.3
+model_size_bytes: 42452546
+model_uuid: 43d66b6ca50b4ec6aa4bb257c166168b
+run_id: 354c56b2b07749e3b34cb1b6594f7c22
+utc_time_created: '2024-07-15 10:09:02.602326'
