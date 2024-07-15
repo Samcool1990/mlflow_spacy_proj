@@ -61,7 +61,7 @@ if "medra_ruler" not in nlp_combined.pipe_names:
 # Start an MLflow run with experiment management
 if __name__ == "__main__":
     # Create a new mlflow experiment
-    experiment_name = "spacy_stanza_combined_model_experiment_2"
+    experiment_name = "spacy_stanza_combined_model_experiment"
     try:
         experiment_id = mlflow.create_experiment(
             name=experiment_name,
