@@ -7,8 +7,8 @@ from spacy.pipeline import EntityRuler
 import mlflow
 
 
-import dagshub
-dagshub.init(repo_owner='Samcool1990', repo_name='mlflow_spacy_proj', mlflow=True)
+# import dagshub
+# dagshub.init(repo_owner='Samcool1990', repo_name='mlflow_spacy_proj', mlflow=True)
 
 # Download and load models
 stanza.download("en")  # Download Stanza model for English
@@ -61,7 +61,7 @@ if "medra_ruler" not in nlp_combined.pipe_names:
 # Start an MLflow run with experiment management
 if __name__ == "__main__":
     # Create a new mlflow experiment
-    experiment_name = "spacy_stanza_combined_model_experiment_3"
+    experiment_name = "spacy_stanza_combined_model_experiment_4"
     try:
         experiment_id = mlflow.create_experiment(
             name=experiment_name,
@@ -81,11 +81,11 @@ if __name__ == "__main__":
         print(f"Run ID: {run_id}")
 
     # Register the Model
-    model_name = "spacy_combined_ner_model_stanza_test_experiment_model_3"
+    model_name = "spacy_combined_ner_model_stanza_test_experiment_model_4"
 
     try:
         result = mlflow.register_model(
-            model_uri=f"runs:/{run_id}/spacy_combined_model_experiment_3",
+            model_uri=f"runs:/{run_id}/spacy_combined_model_experiment_4",
             name=model_name,
         )
         print(f"Model registered as {result.name} with version {result.version}")
