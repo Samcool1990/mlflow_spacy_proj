@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/PIhealth/NLP/SPACY/Optimization_loading/mlflow_spacy_proj/mlruns/8f8c33b5e24f40169aa20eaf1821112f/artifacts
+end_time: 1721038946062
+entry_point_name: ''
+experiment_id: '233881474319244511'
+lifecycle_stage: active
+run_id: 8f8c33b5e24f40169aa20eaf1821112f
+run_name: smiling-gnat-214
+run_uuid: 8f8c33b5e24f40169aa20eaf1821112f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1721038933722
+status: 3
+tags: []
+user_id: Suman.Pathak
