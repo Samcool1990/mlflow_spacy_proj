@@ -6,6 +6,10 @@ from spacy.language import Language
 from spacy.pipeline import EntityRuler
 import mlflow
 
+
+import dagshub
+dagshub.init(repo_owner='Samcool1990', repo_name='mlflow_spacy_proj', mlflow=True)
+
 # Download and load models
 stanza.download("en")  # Download Stanza model for English
 nlp_sm = spacy.load("en_core_web_lg")  # Load SpaCy large English model
@@ -122,3 +126,11 @@ if __name__ == "__main__":
     print(f"Tags: {experiment.tags}")
     print(f"Lifecycle_stage: {experiment.lifecycle_stage}")
     print(f"Creation timestamp: {experiment.creation_time}")
+
+
+
+
+# import mlflow
+# with mlflow.start_run():
+#   mlflow.log_param('parameter name', 'value')
+#   mlflow.log_metric('metric name', 1)
