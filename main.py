@@ -5,20 +5,20 @@ import spacy_stanza
 from spacy.language import Language
 from spacy.pipeline import EntityRuler
 import mlflow
+import dagshub
 
-
-# import dagshub
-# dagshub.init(repo_owner='Samcool1990', repo_name='mlflow_spacy_proj', mlflow=True, root='./Artifacts')
+# Initialize DagsHub
+dagshub.init(repo_owner='Samcool1990', repo_name='mlflow_spacy_proj', mlflow=True, root='./Artifacts')
 
 # Download and load models
-stanza.download("en")  # Download Stanza model for English
-nlp_sm = spacy.load("en_core_web_lg")  # Load SpaCy large English model
-nlp_md = spacy_stanza.load_pipeline("en")  # Load Stanza pipeline into SpaCy
+stanza.download("en")
+nlp_sm = spacy.load("en_core_web_lg")
+nlp_md = spacy_stanza.load_pipeline("en")
 
 # Create a new blank model to combine the pipelines
 nlp_combined = spacy.blank("en")
 
-# Add pipelines from both models using string names
+# Add pipelines from both models
 if nlp_sm:
     for name, component in nlp_sm.pipeline:
         if name not in nlp_combined.pipe_names:
@@ -61,7 +61,7 @@ if "medra_ruler" not in nlp_combined.pipe_names:
 # Start an MLflow run with experiment management
 if __name__ == "__main__":
     # Create a new mlflow experiment
-    experiment_name = "spacy_stanza_combined_model_experiment_5"
+    experiment_name = "spacy_stanza_combined_model_experiment_6"
     try:
         experiment_id = mlflow.create_experiment(
             name=experiment_name,
@@ -76,33 +76,26 @@ if __name__ == "__main__":
 
         # Log parameters, metrics, and model
         mlflow.log_param("iterations", 10)
-        mlflow.spacy.log_model(spacy_model=nlp_combined, artifact_path="spacy_combined_model_experiment_5")
+        mlflow.spacy.log_model(spacy_model=nlp_combined, artifact_path="spacy_combined_model_experiment_6")
 
         print(f"Run ID: {run_id}")
 
-    # Register the Model
-    model_name = "spacy_combined_ner_model_stanza_test_experiment_model_5"
+        # Log additional artifacts if needed
+        mlflow.log_artifact("./corpus/icd10cm-tabular-2024 1.jsonl")
+        mlflow.log_artifact("./corpus/medraLLT.jsonl")
 
+    # Register the Model
+    model_name = "spacy_combined_ner_model_stanza_test_experiment_model_6"
     try:
         result = mlflow.register_model(
-            model_uri=f"runs:/{run_id}/spacy_combined_model_experiment_5",
+            model_uri=f"runs:/{run_id}/spacy_combined_model_experiment_6",
             name=model_name,
         )
         print(f"Model registered as {result.name} with version {result.version}")
 
         # Load model by name and version
-        model_uri = f"models:/{model_name}/1"
+        model_uri = f"models:/{model_name}/5"  # Ensure you are loading the correct version
         loaded_model = mlflow.spacy.load_model(model_uri)
-
-        # # Disable static vectors in tok2vec if necessary
-        # for component in loaded_model.pipeline:
-        #     if component[0] == "tok2vec":
-        #         component[1].cfg["include_static_vectors"] = False
-
-        # Disable static vectors in tok2vec if necessary
-        for component_name, component in loaded_model.pipeline:
-            if component_name == "tok2vec":
-                component.cfg["include_static_vectors"] = False
 
         # Make predictions
         text = ("Alex and Ritesh are cricket players and Mariam never played baseball. "
