@@ -10,6 +10,9 @@ import dagshub
 # Initialize DagsHub
 dagshub.init(repo_owner='Samcool1990', repo_name='mlflow_spacy_proj', mlflow=True, root='./Artifacts')
 
+# Replace with your DagsHub repository
+mlflow.set_tracking_uri("https://dagshub.com/Samcool1990/mlflow_spacy_proj.mlflow")
+
 # Download and load models
 stanza.download("en")
 nlp_sm = spacy.load("en_core_web_lg")
@@ -61,7 +64,8 @@ if "medra_ruler" not in nlp_combined.pipe_names:
 # Start an MLflow run with experiment management
 if __name__ == "__main__":
     # Create a new mlflow experiment
-    experiment_name = "spacy_stanza_combined_model_experiment_6"
+    experiment_name = "spacy_stanza_combined_model_experiment_7"
+    mlflow.set_experiment(experiment_name)
     try:
         experiment_id = mlflow.create_experiment(
             name=experiment_name,
@@ -76,7 +80,7 @@ if __name__ == "__main__":
 
         # Log parameters, metrics, and model
         mlflow.log_param("iterations", 10)
-        mlflow.spacy.log_model(spacy_model=nlp_combined, artifact_path="spacy_combined_model_experiment_6")
+        mlflow.spacy.log_model(spacy_model=nlp_combined, artifact_path="spacy_combined_model_experiment_7")
 
         print(f"Run ID: {run_id}")
 
@@ -85,10 +89,10 @@ if __name__ == "__main__":
         mlflow.log_artifact("./corpus/medraLLT.jsonl")
 
     # Register the Model
-    model_name = "spacy_combined_ner_model_stanza_test_experiment_model_6"
+    model_name = "spacy_combined_ner_model_stanza_test_experiment_model_7"
     try:
         result = mlflow.register_model(
-            model_uri=f"runs:/{run_id}/spacy_combined_model_experiment_6",
+            model_uri=f"runs:/{run_id}/spacy_combined_model_experiment_7",
             name=model_name,
         )
         print(f"Model registered as {result.name} with version {result.version}")
@@ -119,3 +123,4 @@ if __name__ == "__main__":
     print(f"Tags: {experiment.tags}")
     print(f"Lifecycle_stage: {experiment.lifecycle_stage}")
     print(f"Creation timestamp: {experiment.creation_time}")
+
