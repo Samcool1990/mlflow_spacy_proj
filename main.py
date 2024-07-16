@@ -78,9 +78,10 @@ if __name__ == "__main__":
     with mlflow.start_run(experiment_id=experiment_id) as run:
         run_id = run.info.run_id
 
+        artifact_path = "spacy_combined_model_experiment_7"
         # Log parameters, metrics, and model
         mlflow.log_param("iterations", 10)
-        mlflow.spacy.log_model(spacy_model=nlp_combined, artifact_path="spacy_combined_model_experiment_7")
+        mlflow.spacy.log_model(spacy_model=nlp_combined, artifact_path=artifact_path)
 
         print(f"Run ID: {run_id}")
 
@@ -92,7 +93,7 @@ if __name__ == "__main__":
     model_name = "spacy_combined_ner_model_stanza_test_experiment_model_7"
     try:
         result = mlflow.register_model(
-            model_uri=f"runs:/{run_id}/spacy_combined_model_experiment_7",
+            model_uri=f"runs:/{run_id}/{artifact_path}",
             name=model_name,
         )
         print(f"Model registered as {result.name} with version {result.version}")
