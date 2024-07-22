@@ -50,7 +50,7 @@ for component_name, component in nlp_combined.pipeline:
 @Language.factory("icd_ruler")
 def create_icd_ruler(nlp, name):
     ruler = EntityRuler(nlp, validate=True)
-    ruler.from_disk('./corpus/icd10cm-tabular-2024 1.jsonl')
+    ruler.from_disk('./corpus/icd10cm-tabular-2024.jsonl')
     return ruler
 
 @Language.factory("medra_ruler")
@@ -90,7 +90,7 @@ if __name__ == "__main__":
         print(f"Run ID: {run_id}")
 
         # Log additional artifacts if needed
-        mlflow.log_artifact("./corpus/icd10cm-tabular-2024 1.jsonl")
+        mlflow.log_artifact("./corpus/icd10cm-tabular-2024.jsonl")
         mlflow.log_artifact("./corpus/medraLLT.jsonl")
 
     # Register the Model
