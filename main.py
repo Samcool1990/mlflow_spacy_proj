@@ -7,9 +7,6 @@ from spacy.pipeline import EntityRuler
 import mlflow
 import dagshub
 
-import random
-import sys
-from dvclive import Live
 
 # Initialize DagsHub
 dagshub.init(repo_owner='Samcool1990', repo_name='mlflow_spacy_proj', mlflow=True, root='./Artifacts')
